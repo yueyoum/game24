@@ -223,22 +223,9 @@ class SuffixFormula(object):
                 break
 
             if a not in OPERATIONS and b not in OPERATIONS and c == op and d not in OPERATIONS and e == op:
-                new_sub_seq = [a]
-                if b >= d:
-                    new_sub_seq.append(d)
-                    new_sub_seq.append(b)
-                else:
-                    new_sub_seq.append(b)
-                    new_sub_seq.append(d)
-
-                new_sub_seq.insert(2, op)
-                new_sub_seq.append(op)
-
-                for _ in range(5):
-                    sequence.pop(index)
-
-                for _i in range(4, -1, -1):
-                    sequence.insert(index, new_sub_seq[_i])
+                if d < b:
+                    sequence[index+1] = d
+                    sequence[index+3] = b
 
         return sequence
 
